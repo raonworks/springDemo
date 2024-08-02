@@ -17,8 +17,8 @@ public class PostController {
   private final PostService postService;
 
   @GetMapping("/list")
-  public List<Post> postList() {
-    return postService.postList();
+  public List<Post> postList(@RequestParam(required = false, defaultValue = "") String title) {
+    return postService.postList(title);
   }
 
   @GetMapping("/{postId}")

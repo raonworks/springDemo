@@ -16,8 +16,11 @@ public class PostService {
   private final PostRepository postRepository;
   private final PostMapper postMapper;
 
-  public List<Post> postList() {
+  public List<Post> postList(String title) {
 //    return postRepository.findAll();
-    return postMapper.postList();
+//    return postMapper.postList();
+    if(title.isEmpty()) return postRepository.findAll();
+    System.out.println(title);
+    return postRepository.findByTitleContains(title);
   }
 }
