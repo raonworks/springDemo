@@ -3,6 +3,7 @@ package com.example.demo.services;
 import com.example.demo.mapper.PostMapper;
 import com.example.demo.models.Post;
 import com.example.demo.repositories.PostRepository;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
@@ -23,4 +24,5 @@ public class PostService {
     System.out.println(title);
     return postRepository.findByTitleContains(title);
   }
+
 }
