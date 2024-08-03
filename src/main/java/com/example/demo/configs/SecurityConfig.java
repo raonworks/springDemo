@@ -18,7 +18,7 @@ public class SecurityConfig {
 
     http.csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests(authorizeRequest ->
-                    authorizeRequest.requestMatchers("/auth/**").permitAll()
+                    authorizeRequest.requestMatchers("/**", "/auth/**").permitAll()
                             .anyRequest().authenticated())
             .sessionManagement(sessionManagement ->
                     sessionManagement.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))

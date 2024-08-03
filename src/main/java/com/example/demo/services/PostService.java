@@ -1,9 +1,10 @@
 package com.example.demo.services;
 
+import com.example.demo.dto.DtoPostResponse;
 import com.example.demo.mapper.PostMapper;
+import com.example.demo.mapper.PostResponseMapper;
 import com.example.demo.models.Post;
 import com.example.demo.repositories.PostRepository;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
@@ -16,13 +17,13 @@ public class PostService {
 
   private final PostRepository postRepository;
   private final PostMapper postMapper;
+  private final PostResponseMapper postResponseMapper;
 
-  public List<Post> postList(String title) {
+  public List<DtoPostResponse> postList(String title) {
 //    return postRepository.findAll();
 //    return postMapper.postList();
-    if(title.isEmpty()) return postRepository.findAll();
-    System.out.println(title);
-    return postRepository.findByTitleContains(title);
+    if(title.isEmpty()) return postRepository.findAll().stream().map(postResponseMapper).toList();
+    return postRepository.findByTitleContains(title).stream().map(postResponseMapper).toList();
   }
 
 }

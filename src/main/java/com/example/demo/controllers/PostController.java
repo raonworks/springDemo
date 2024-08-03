@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.dto.DtoPostResponse;
 import com.example.demo.models.Post;
 import com.example.demo.services.PostService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,7 @@ public class PostController {
   private final PostService postService;
 
   @GetMapping("/list")
-  public List<Post> postList(@RequestParam(required = false, defaultValue = "") String title) {
+  public List<DtoPostResponse> postList(@RequestParam(required = false, defaultValue = "") String title) {
     return postService.postList(title);
   }
 
