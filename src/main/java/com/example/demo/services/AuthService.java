@@ -1,5 +1,7 @@
 package com.example.demo.services;
 
+import com.example.demo.dto.DtoAuthRequest;
+import com.example.demo.dto.DtoAuthResponse;
 import com.example.demo.models.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,12 +13,13 @@ import org.springframework.stereotype.Service;
 public class AuthService {
 
   private final AuthenticationManager authenticationManager;
+  private final JwtService jwtService;
 
-  public User authenticate(User user) {
+  public DtoAuthResponse authenticate(User user) {
     authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword())
+            new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
     );
-    return user;
+    return new DtoAuthResponse(jwtService.generateToken(user));
   }
 
 }

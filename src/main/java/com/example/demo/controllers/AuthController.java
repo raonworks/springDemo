@@ -1,5 +1,7 @@
 package com.example.demo.controllers;
 
+import com.example.demo.dto.DtoAuthRequest;
+import com.example.demo.dto.DtoAuthResponse;
 import com.example.demo.models.User;
 import com.example.demo.services.AuthService;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +19,12 @@ public class AuthController {
   private final AuthService authService;
 
   @PostMapping("/login")
-  public ResponseEntity<User> login(@RequestBody User user) {
+  public ResponseEntity<DtoAuthResponse> login(@RequestBody DtoAuthRequest login) {
+    User user = User.builder()
+            .email(login.email())
+            .password(login.password())
+            .build();
+
     return ResponseEntity.ok(authService.authenticate(user));
   }
 
