@@ -1,6 +1,6 @@
 package com.example.demo.mapper;
 
-import com.example.demo.dto.DtoPostResponse;
+import com.example.demo.models.dto.DtoPostResponse;
 import com.example.demo.models.Post;
 import org.springframework.stereotype.Component;
 

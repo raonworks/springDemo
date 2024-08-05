@@ -1,7 +1,7 @@
 package com.example.demo.controllers;
 
-import com.example.demo.dto.DtoAuthRequest;
-import com.example.demo.dto.DtoAuthResponse;
+import com.example.demo.models.dto.DtoAuthRequest;
+import com.example.demo.models.dto.DtoAuthResponse;
 import com.example.demo.models.User;
 import com.example.demo.services.AuthService;
 import lombok.RequiredArgsConstructor;

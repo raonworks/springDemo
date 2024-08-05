@@ -1,8 +1,12 @@
 package com.example.demo;
 
 import com.example.demo.models.Post;
+import com.example.demo.models.Score;
+import com.example.demo.models.Student;
 import com.example.demo.models.User;
 import com.example.demo.repositories.PostRepository;
+import com.example.demo.repositories.ScoreRepository;
+import com.example.demo.repositories.StudentRepository;
 import com.example.demo.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +23,8 @@ public class DemoApplication implements CommandLineRunner {
 
 	private final PostRepository postRepository;
 	private final UserRepository userRepository;
+	private final StudentRepository studentRepository;
+	private final ScoreRepository scoreRepository;
 	private final PasswordEncoder passwordEncoder;
 
 	public static void main(String[] args) {
@@ -43,5 +49,18 @@ public class DemoApplication implements CommandLineRunner {
 										.build()
 		);
 		userRepository.saveAll(userList);
+
+		List<Student> students = List.of(
+				new Student(null, "이태식", 30),
+				new Student(null, "배수지", 32)
+		);
+		studentRepository.saveAll(students);
+
+		List<Score> scores = List.of(
+				new Score(null, "수학", 80, 1L),
+				new Score(null, "국어", 67, 1L)
+		);
+		scoreRepository.saveAll(scores);
+
 	}
 }

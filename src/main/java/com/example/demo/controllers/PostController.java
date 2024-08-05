@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.dto.DtoPostResponse;
+import com.example.demo.models.dto.DtoPostResponse;
 import com.example.demo.models.Post;
 import com.example.demo.services.PostService;
 import lombok.RequiredArgsConstructor;

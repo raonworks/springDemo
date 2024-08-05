@@ -1,14 +1,12 @@
 package com.example.demo.services;
 
-import com.example.demo.dto.DtoPostResponse;
+import com.example.demo.models.dto.DtoPostResponse;
 import com.example.demo.mapper.PostMapper;
 import com.example.demo.mapper.PostResponseMapper;
-import com.example.demo.models.Post;
 import com.example.demo.repositories.PostRepository;
 import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
