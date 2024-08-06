@@ -14,7 +14,7 @@ import java.util.List;
 public class PostService {
 
   private final PostRepository postRepository;
-  private final PostMapper postMapper;
+//  private final PostMapper postMapper;
   private final PostResponseMapper postResponseMapper;
 
   public List<DtoPostResponse> postList(String title) {

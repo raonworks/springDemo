@@ -20,6 +20,17 @@ spring:
     open-in-view: false
     generate-ddl: true
     show-sql: true
+    defer-datasource-initialization: true
   sql:
     init:
-      platform: postgres
+      mode: always
+      platform: postgresql
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/h2/**/**.xml
+  #  type-handlers-package: com.example.demo.mapper.typehandler
+  type-aliases-package: com.example.demo.models
+  configuration:
+    map-underscore-to-camel-case: true
+    default-statement-timeout: 30
+    default-fetch-size: 100
