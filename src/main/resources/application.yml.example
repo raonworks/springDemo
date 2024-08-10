@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  web:
+    resources:
+      static-locations: META-INF:/resources, classpath:/resources, classpath:/static, classpath:/static/dist
+    security:
+      jwt:
+        secret-key:
+        expiration: 58560 #1000 * 60 * 1440 = 1일
+        refresh-token-expiration: 409920 #1주일
+
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username:
+    password: ENC(D45xi3Qs4KPyJ/c1ekD8+2Qr+hOTXyoQ)
+
+  # jpa properties
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+      platform: postgresql
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/h2/**/**.xml
+  #  type-handlers-package: com.example.demo.mapper.typehandler
+  type-aliases-package: com.example.demo.models
+  configuration:
+    map-underscore-to-camel-case: true
+    default-statement-timeout: 30
+    default-fetch-size: 100
