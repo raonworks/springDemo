@@ -5,6 +5,12 @@ spring:
   web:
     resources:
       static-locations: META-INF:/resources, classpath:/resources, classpath:/static, classpath:/static/dist
+    security:
+      jwt:
+        secret-key: YXJyb3dldmVuaW5nd2hlbnRpZGVyZXBvcnRzZWxkb210aGVtc2VsdmVzc2NhbGV2YXI
+        expiration: 58560 #1000 * 60 * 1440 = 1일
+        refresh-token-expiration: 409920 #1주일
+
   # Database
   datasource:
     driver-class-name: org.postgresql.Driver
