@@ -8,10 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -19,6 +16,24 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
   private final AuthService authService;
+
+  @GetMapping("/foo")
+  public String Foo(@RequestParam String name) {
+    //arrow, inline 사용법
+    Loan loan = switch (name) {
+      case "foo" -> new SecureLonan();
+      default -> new UnSecureLoan(0.3f);
+    };
+
+    //jdk 21 이상, pattern matching
+    String message = switch (loan) {
+      case SecureLonan sl -> name + "님은 무이자";
+//      case UnSecureLoan usl -> name + "님은 " + usl.interest;
+      case UnSecureLoan(float interest) -> name + "님은 " + interest;
+    };
+
+    return message;
+  }
 
   @PostMapping("/login")
   public ResponseEntity<DtoAuthResponse> login(@RequestBody DtoAuthRequest login) {
@@ -33,6 +48,18 @@ public class AuthController {
   @PostMapping("/refresh-token")
   public void refreshToken(HttpServletRequest req, HttpServletResponse res) {
     authService.refreshToken(req, res);
+  }
+
+  sealed interface Loan permits SecureLonan, UnSecureLoan {
+
+  }
+
+  final class SecureLonan implements Loan {
+
+  }
+
+  record UnSecureLoan(float interest) implements Loan {
+
   }
 
 }
